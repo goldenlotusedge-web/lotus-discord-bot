@@ -11,7 +11,7 @@ Un bot de Discord profesional y simple que automatiza el sistema de verificació
 ✅ **Sin complicaciones** - Código limpio y simple de entender  
 ✅ **Escalable** - Fácil de agregar más funcionalidades  
 
-## 🚀 Instalación
+## 🚀 Instalación Rápida
 
 ### 1. Requisitos previos
 - Node.js v16.9.0 o superior
@@ -23,36 +23,51 @@ Un bot de Discord profesional y simple que automatiza el sistema de verificació
 npm install
 ```
 
-### 3. Configurar el bot en Discord Developer Portal
+### 3. Invitar el bot al servidor
+
+Usa este link para agregar el bot a tu servidor (reemplaza `TU_APPLICATION_ID` con tu ID):
+
+```
+https://discord.com/oauth2/authorize?client_id=TU_APPLICATION_ID&permissions=268520448&scope=bot%20applications.commands
+```
+
+**¿Dónde obtener `TU_APPLICATION_ID`?**
+1. Ve a [Discord Developer Portal](https://discord.com/developers/applications)
+2. Selecciona tu aplicación
+3. En la sección **General Information**, copia el **Application ID**
+4. Reemplázalo en el link anterior
+
+### 4. Configurar el bot en Discord Developer Portal
 
 1. Ve a [Discord Developer Portal](https://discord.com/developers/applications)
-2. Crea una nueva aplicación
-3. Ve a **Bot** → **Add Bot**
-4. Copia el **TOKEN** (mantén esto secreto)
-5. Ve a **OAuth2 → URL Generator**:
-   - Selecciona scope: `bot`
-   - Selecciona permisos: `Send Messages`, `Embed Links`, `Add Reactions`, `Manage Roles`
-   - Copia la URL y únete con tu bot a tu servidor
+2. Selecciona tu aplicación
+3. Ve a **Bot** → **Add Bot** (si no existe)
+4. Copia el **TOKEN** (⚠️ mantén esto secreto)
+5. En **Privileged Gateway Intents**, activa:
+   - ✅ Server Members Intent
+   - ✅ Message Content Intent
 
-### 4. Obtener IDs en Discord
+### 5. Obtener IDs en Discord
 
 Habilita **Modo Desarrollador** en Discord (User Settings → Advanced → Developer Mode)
 
 Luego, clic derecho en:
 - **Servidor** → "Copiar ID del Servidor" → `guildId`
-- **Canal #verificacion** → "Copiar ID del Canal" → `verification.channelId`
-- **Rol @Verified** → "Copiar ID del Rol" → `verification.roleId`
+- **Canal #verificacion** → "Copiar ID del Canal" → `channels.verification`
+- **Rol @Verified** → "Copiar ID del Rol" → `roles.verified`
 
-### 5. Completar `config.json`
+### 6. Completar `config.json`
 
 ```json
 {
   "token": "YOUR_BOT_TOKEN_HERE",
-  "clientId": "YOUR_CLIENT_ID_HERE",
+  "clientId": "YOUR_APPLICATION_ID_HERE",
   "guildId": "YOUR_GUILD_ID_HERE",
-  "verification": {
-    "channelId": "ID_DEL_CANAL_VERIFICACION",
-    "roleId": "ID_DEL_ROL_VERIFIED"
+  "channels": {
+    "verification": "VERIFICATION_CHANNEL_ID_HERE"
+  },
+  "roles": {
+    "verified": "VERIFIED_ROLE_ID_HERE"
   },
   "colors": {
     "primary": "#5865F2",
@@ -62,16 +77,16 @@ Luego, clic derecho en:
 }
 ```
 
-### 6. Crear roles en Discord
+### 7. Crear roles en Discord
 
 1. Ve a Configuración del Servidor → Roles
-2. Crea un rol llamado "Verified" (o el nombre que prefieras)
+2. Crea un rol llamado "Verified" (exactamente así)
 3. Asegúrate de que el bot tenga permisos para asignar este rol
 4. En los canales, establece permisos:
    - **Denegar** @everyone
    - **Permitir** rol "Verified"
 
-### 7. Ejecutar el bot
+### 8. Ejecutar el bot
 
 ```bash
 # Desarrollo
@@ -90,10 +105,10 @@ npm start
    - Envía un mensaje en #verificacion
    - Envía un DM de bienvenida
 
-2. **Usuario hace clic en "Verificar Ahora"**
+2. **Usuario hace clic en "Verificar"**
    - El bot asigna el rol "Verified"
    - El usuario obtiene acceso a los canales
-   - Recibe confirmación en DM
+   - Recibe confirmación
 
 ## 🎨 Personalización
 
@@ -141,11 +156,11 @@ lotus-discord-bot/
 - Asegúrate de que el bot tiene permisos en el servidor
 
 ### No se envía el mensaje de verificación
-- Verifica que `verification.channelId` sea correcto
+- Verifica que `channels.verification` sea correcto
 - Asegúrate de que el bot tiene permiso de escribir en ese canal
 
 ### No se asigna el rol
-- Verifica que `verification.roleId` sea correcto
+- Verifica que `roles.verified` sea correcto
 - Asegúrate de que el rol del bot está por encima del rol "Verified"
 
 ### No se envía el DM
