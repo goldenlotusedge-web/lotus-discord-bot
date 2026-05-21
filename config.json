@@ -2,9 +2,11 @@
   "token": "YOUR_BOT_TOKEN_HERE",
   "clientId": "YOUR_CLIENT_ID_HERE",
   "guildId": "YOUR_GUILD_ID_HERE",
-  "verification": {
-    "channelId": "YOUR_VERIFICATION_CHANNEL_ID_HERE",
-    "roleId": "YOUR_VERIFIED_ROLE_ID_HERE"
+  "channels": {
+    "verification": "VERIFICATION_CHANNEL_ID_HERE"
+  },
+  "roles": {
+    "verified": "VERIFIED_ROLE_ID_HERE"
   },
   "colors": {
     "primary": "#5865F2",
