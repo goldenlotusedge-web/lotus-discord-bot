@@ -1,0 +1,25 @@
+{
+  "name": "lotus-discord-bot",
+  "version": "1.0.0",
+  "description": "LOTUS Discord Bot - Sistema de verificación profesional",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "verification",
+    "discord.js",
+    "lotus"
+  ],
+  "author": "LOTUS",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^14.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
